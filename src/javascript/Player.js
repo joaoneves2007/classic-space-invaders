@@ -21,6 +21,9 @@ class Player {
      if(this.shootPressed) {
         this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
      }
+     this.move();
+     this.collideWithWalls();
+     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 
     move() {
