@@ -30,4 +30,13 @@ class Player {
             this.x += -this.velocity;
         }
     }
+
+    collideWithWalls() {
+        if(this.x < 0) {
+            this.x = 0;
+        }
+        if(this.x > this.width - this.canvas.width) {
+            this.x = this.canvas.width - this.width;
+        }
+    }
 }
