@@ -12,5 +12,14 @@ class Player {
         this.height = 48;
         this.image = new Image();
         this.image.src = 'src/assets/images/player.png';
+
+        document.addEventListener("keydown", this.keydown);
+        document.addEventListener("keyup", this.keyup);
+    }
+
+    draw(ctx) {
+     if(this.shootPressed) {
+        this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
+     }
     }
 }
