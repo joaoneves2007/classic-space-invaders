@@ -43,4 +43,18 @@ export default class EnemyController {
         this.enemyRows = this.enemyRows.filter((enemyRow) => enemyRow.length > 0);
     }
 
-}    
+    fireBullet(){
+        this.fireBulletTimer--;
+        if(this.fireBulletTimer <= 0) {
+            const allEnemies = this.enemyRows.flat();
+            const enemyIndex = Math.floor(Math.random() * allEnemies.length);
+            const enemyBulletController.shoot(enemy.X + enemy.width / 2, enemy.y, -3);
+        }
+
+        resetMoveDownTimer() {
+            if(this.moveDownTimer <= 0) {
+                this.moveDownTimer = this.moveDownTimerDefault;
+            }
+        }
+
+}
