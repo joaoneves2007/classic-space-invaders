@@ -28,6 +28,8 @@ export default class EnemyController {
         this.playerBulletController = playerBulletController;
         this.enemyDeathSound = new Audio("src/assets/sounds/enemy-death.wav");
         this.enemyDeathSound.volume = 0.1;
+
+        this.createEnemies();
     }
 
     collisionDetection() {
@@ -116,4 +118,15 @@ export default class EnemyController {
             })
         }
 
-        happy = () => {};    
+        happy = () => {};
+
+        createEnemies() {
+            this.enemyMap.forEach((row, rowIndex) => {
+                this.enemyRows[rowIndex] = [];
+                row.forEach((enemyNumber, enemyIndex) => {
+                    if(enemyNumber > 0) {
+                        this.enemyRows[rowIndex].push(new Enemy(enemyIndex * 50, rowIndex * 35, enemyNumber));
+                    }
+                });
+            });
+            }
