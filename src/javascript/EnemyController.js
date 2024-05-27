@@ -32,6 +32,15 @@ export default class EnemyController {
         this.createEnemies();
     }
 
+    draw(ctx) {
+        this.decrementMoveDownTimerDefault();
+        this.updateVelocityAndDirection();
+        this.collisionDetection();
+        this.drawEnemies(ctx);
+        this.resetMoveDownTimer();
+        this.fireBullet();
+    }
+
     collisionDetection() {
         this.enemyRows.forEach((this.enemyRow) => {
             this.enemyRow.forEach((enemy, enemyIndex) => {
