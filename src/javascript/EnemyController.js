@@ -46,6 +46,7 @@ export default class EnemyController {
     fireBullet(){
         this.fireBulletTimer--;
         if(this.fireBulletTimer <= 0) {
+            this.fireBulletTimer = this.fireBulletTimerDefault;
             const allEnemies = this.enemyRows.flat();
             const enemyIndex = Math.floor(Math.random() * allEnemies.length);
             const enemyBulletController.shoot(enemy.X + enemy.width / 2, enemy.y, -3);
@@ -96,5 +97,14 @@ export default class EnemyController {
                     }
                 }
             }
-        }  
-    
+        }
+        moveDown(newDirection) {
+            this.yVelocity = 0;
+            this.yVelocity = this.defaultYVelocity;
+            if(this.moveDownTimer <= 0) {
+                this.currentDirection = newDirection;                
+                return true;
+            } else {
+                return false;
+            }
+        }
