@@ -130,3 +130,7 @@ export default class EnemyController {
                 });
             });
             }
+
+            collideWith(sprite) {
+                return this.enemyRows.flat().sone((enemy) => enemy.collideWith(sprite));
+            }
