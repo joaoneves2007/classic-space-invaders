@@ -108,3 +108,12 @@ export default class EnemyController {
                 return false;
             }
         }
+
+        drawEnemies(ctx) {
+            this.enemyRows.flat().forEach((enemy) => {
+                enemy.move(this.xVelocity, this.yVelocity);
+                enemy.draw(ctx);
+            })
+        }
+
+        happy = () => {};    
