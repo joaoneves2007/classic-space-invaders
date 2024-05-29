@@ -21,3 +21,28 @@ const enemyController = new EnemyController(
 );
 
 const player = new Player(canvas, 10, playerBulletController);
+
+let isGameOver = false;
+let didWin = false;
+
+function game() {
+    ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+}
+
+function checkGameOver() {
+    if(isGameOver) {
+        return;
+    }
+    if(enemyBulletController.collideWith(player)) {
+        isGameOver = true;
+    }
+
+    if(enemyController.collideWith(player)) {
+        isGameOver = true;
+    }
+
+    if(enemyController.enemyRows.length === 0) {
+        didWin = true;
+        isGameOver = true;
+    }
+}
