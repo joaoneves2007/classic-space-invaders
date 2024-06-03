@@ -1,5 +1,5 @@
 import EnemyController from "./EnemyController.js";
-import BulletContoller from "./BulletContoller.js";
+import BulletController from "./BulletController.js";
 import Player from "./Player.js";
 
 const canvas = document.getElementById("game");
@@ -11,8 +11,8 @@ canvas.height = 600;
 const background = new Image();
 background.src = "src/assets/images/space.png";
 
-const enemyBulletController = new BulletController(canvas, 4, "red, false");
-const playerBulletController = new Player(canvas, 10, "white", true);
+const enemyBulletController = new BulletController(canvas, 4, "red", false);
+const playerBulletController = new BulletController(canvas, 10, "white", true);
 
 const enemyController = new EnemyController(
     canvas, 
@@ -28,37 +28,33 @@ let didWin = false;
 function game() {
     checkGameOver();
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-}
-
-function displayGameOver() {
-
-    if(!isGameOver) {
+    if (!isGameOver) {
         enemyController.draw(ctx);
         player.draw(ctx);
         playerBulletController.draw(ctx);
         enemyBulletController.draw(ctx);
+    } else {
+        displayGameOver();
     }
+}
 
+function displayGameOver() {
     let text = didWin ? "Você ganhou" : "Game Over";
-    let textOffset = didWin > 5 : 3.6;
+    let textOffset = didWin ? 5 : 3.6;
     ctx.fillStyle = "white";
-    ctx.font = "35px 'Press Start 2P";
+    ctx.font = "35px 'Press Start 2P'";
     ctx.fillText(text, canvas.width / textOffset, canvas.height / 2);
 }
 
 function checkGameOver() {
-    if(isGameOver) {
+    if (isGameOver) {
         return;
     }
-    if(enemyBulletController.collideWith(player)) {
+    if (enemyBulletController.collideWith(player) || enemyController.collideWith(player)) {
         isGameOver = true;
     }
 
-    if(enemyController.collideWith(player)) {
-        isGameOver = true;
-    }
-
-    if(enemyController.enemyRows.length === 0) {
+    if (enemyController.enemyRows.length === 0) {
         didWin = true;
         isGameOver = true;
     }

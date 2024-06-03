@@ -2,6 +2,7 @@ export default class Player {
     rightPressed = false;
     leftPressed = false;
     shootPressed = false;
+
     constructor(canvas, velocity, bulletController) {
         this.canvas = canvas;
         this.velocity = velocity;
@@ -18,42 +19,52 @@ export default class Player {
     }
 
     draw(ctx) {
-     if(this.shootPressed) {
-        this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
-     }
-     this.move();
-     this.collideWithWalls();
-     ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        if (this.shootPressed) {
+            this.bulletController.shoot(this.x + this.width / 2, this.y, 4, 10);
+        }
+        this.move();
+        this.collideWithWalls();
+        ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 
     move() {
-        if(this.rightPressed) {
+        if (this.rightPressed) {
             this.x += this.velocity;
         } else if (this.leftPressed) {
-            this.x += -this.velocity;
+            this.x -= this.velocity;
         }
     }
 
     collideWithWalls() {
-        if(this.x < 0) {
+        if (this.x < 0) {
             this.x = 0;
         }
-        if(this.x > this.width - this.canvas.width) {
+        if (this.x > this.canvas.width - this.width) {
             this.x = this.canvas.width - this.width;
         }
     }
+
     keydown = (event) => {
+        if (event.code === "ArrowRight") {
+            this.rightPressed = true;
+        }
+        if (event.code === "ArrowLeft") {
+            this.leftPressed = true;
+        }
+        if (event.code === "Space") {
+            this.shootPressed = true;
+        }
     };
 
     keyup = (event) => {
-        if(event.code == "ArrowRight") {
-            this.rightPressed = true;
+        if (event.code === "ArrowRight") {
+            this.rightPressed = false;
         }
-        if(event.code == "ArrowLeft") {
-            this.leftPressed = true;
+        if (event.code === "ArrowLeft") {
+            this.leftPressed = false;
         }
-        if(event.code == "Space") {
-            this.shootPressed = true;
+        if (event.code === "Space") {
+            this.shootPressed = false;
         }
     };
 }
