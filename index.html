@@ -1,42 +1,79 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="shortcut icon" href="src/assets/images/player.png" type="image/x-icon">
-    <title>Classic Space Invaders | João Neves</title>
-    <style>
-        canvas{
-            box-shadow: black 20px 10px 50px;
-        }
-        h1{
-            margin-top: 20px;
-            margin-bottom: 10px;
-            font-size: 2.9em;
-            font-family: "Press Start 2P";
-            color: white;
-        }
-      body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0px;
-    margin: 0px;
-    height: 100vh;
-    background: linear-gradient(
-        0deg,
-        rgba(12, 12, 12, 0.804) 0%,
-        rgb(0, 0, 0) 100%
-    );
-}
-    </style>
+<title>Classic Space Invaders | João Neves</title>
+<style>
+    canvas {
+    box-shadow: black 20px 10px 50px;
+    }
+    h1 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    font-family: "Press Start 2P";
+    color: white;
+    }
+    body{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin: 0px;
+        padding: 0px;
+        height: 100vh;
+        background: linear-gradient(
+            0deg,
+            rgba(12, 12, 12, 0.804) 0%,
+            rgb(0, 0, 0) 100%
+        );
+    }
+    #LogosContainer {
+        display: flex;
+        margin-top: 30px;
+    }
+    #instructions {
+        margin-top: 10px 0;
+        font-size: 1.2em;
+        font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+        color: rgb(0,74,141);
+    }
+</style>
 </head>
 <body>
-    <h1>Space Invaders</h1>
-    <canvas id="game"></canvas>
-    <script type="module" src="src/javascript/index.js"></script>
+    <div id="logosContainer">
+        <div id="LogoSenac">
+<img src="src/assets/images/SescSenac.png" alt="Logo Senac" width="300px" height="110px">
+        </div>
+        <div id="LogoSesc">
+        <img src="src/assets/images/logo-sesc.png" alt="Logo Sesc" width="310px" height="150px">
+    </div>
+</div>
+<div id="instructions">
+<h1>Bem-vindo ao jogo <span>Space Invaders</span></h1>
+<p>Use as setas esquerda e direita para mover.</p>
+<p>Pressione a barra de espaço para atirar.</p>
+<button id="playButton" class="button">Jogar</button>
+</div>
+<div id="gameOverScreen">
+    <h1>Game Over</h1>
+    <p id="gameOverScreenScore"></p>
+    <button id="retryButton" class="button">Tentar Novamente</button>
+    </div>
+    <div id="winScreen">
+    <h1>Parabéns, você venceu!</h1>
+    <p id="winScreenScore"></p>
+    <button id="restartButton" class="button">Reiniciar</button>
+    </div>
+    <div id="titleAndScore">
+        <h1 id="title">Space Invaders</h1>
+        <p id="score">Pontuação: 0</p>
+        </div>
+        <canvas id="game"></canvas>
+        <script type="module" src="src/javascript/index.js"></script>
 </body>
 </html>
