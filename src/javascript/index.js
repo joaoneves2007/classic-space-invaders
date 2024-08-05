@@ -125,6 +125,20 @@ function startGame() {
   gameInterval = setInterval(game, 1000 / 60);
 }
 
+function restartGame() {
+  gameOverScreen.style.display = "none";
+  winScreen.style.display = "none";
+  title.style.display = "none";
+  canvas.style.display = "none";
+  scoreDisplay.style.display = "none";
+
+  instructions.style.display = "flex";
+  LogosContainer.style.display = "flex";
+  footer.style.display = "flex";
+}
+
 playButton.addEventListener("click", startGame);
+retryButton.addEventListener("click", restarGame);
+restartButton.addEventListener("click", restarGame);
 
 initGame();
